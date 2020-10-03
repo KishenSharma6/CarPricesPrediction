@@ -1,0 +1,1 @@
+In this repository, I will be building a quick and simple machine learning model to predict car prices using Object Oriented Programming.
