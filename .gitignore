@@ -1,0 +1,5 @@
+#Ignore Data. Reference the References folder if you are interested in viewing the raw data source
+Data/
+
+#Ignore venv
+venv
