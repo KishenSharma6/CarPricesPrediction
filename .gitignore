@@ -5,4 +5,4 @@ Data/
 venv/
 
 #Ignore checkpoints
-*/.ipynb_checkpoints
+*.ipynb_checkpoints
