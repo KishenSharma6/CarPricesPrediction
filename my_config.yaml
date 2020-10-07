@@ -1,0 +1,5 @@
+#Set path to raw data
+base:
+  path:
+    data: "C:/Users/kishe/Documents/Data Science/Projects/Python/In Progress/Car_Price_Prediction/Data/Raw_Data/GeelyAutoCarPrices_Raw.csv"
+  
