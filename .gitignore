@@ -8,7 +8,7 @@ venv/
 *.ipynb_checkpoints
 
 #Ignore __pycache__ files
-*__pycache__*
+__pycache__/
 
 #Ignore pyc files
-*.pyc
+*.py[cod]
