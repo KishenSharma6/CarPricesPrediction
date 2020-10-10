@@ -4,21 +4,44 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-class Plot:
-    def __init__(self, figure_size = None, color = None, dataframe = None):
-        self.figure_size = figure_size
+class EDA_Viz:
+    def __init__(self, dataframe = None, color = None):
         self.color = color
         self.dataframe = dataframe
     
-    def heat_map(self, figure_size=None):
+    def heat_map(self, ax=None):
         """
         Function takes a dataframe and returns a heatmap reflecting the correlations between 
         each of the features of said dataframe
         """
-        f, ax = plt.subplots(figsize = self.figure_size)
+        #Create correlation matrix
         corr = self.dataframe.corr()
-        j = sns.heatmap(corr, ax = ax)
+
+        #Create mask 
+        mask = np.triu(np.ones_like(corr, dtype=np.bool))
+
+        #Minor adjustments to inclde edge values in mask of heat map
+        mask = mask[1:,:-1]
+        corr = corr.iloc[1:,:-1].copy()
+
+        #Create heatmap plot using correlation matrix
+        j = sns.heatmap(mask=mask, cmap='Blues', 
+                        linewidths=.25, annot=True, 
+                        fmt=".2f", cbar_kws={"shrink": .8},
+                        data=corr, ax = ax)
+        return j
+    
+    def histogram(self,feature = None, ax = None,bins=30):
+        j = sns.histplot(self.dataframe, x=feature,
+                        color= self.color, bins = bins,
+                        kde= True, ax=ax)
         return j
 
-    #def feature_histogram(df,figure_size = None )
+    def boxplot(self, cat_var= None, cont_var=None, 
+                ax = None):
+        j = sns.boxplot()
 
+    
+#    #def scatterplot(self):
+            
+        
