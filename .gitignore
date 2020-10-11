@@ -11,4 +11,4 @@ venv/
 __pycache__/
 
 #Ignore pyc files
-/*.pyc
+*.pyc
