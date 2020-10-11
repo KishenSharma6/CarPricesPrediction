@@ -38,8 +38,11 @@ class EDA_Viz:
         return j
 
     def boxplot(self, cat_var= None, cont_var=None, 
-                ax = None):
-        j = sns.boxplot()
+                hue = None, order = None, ax = None):
+        j = sns.boxplot(x = cat_var, y = cont_var, 
+                        hue = hue, order=order,
+                        data=self.dataframe, ax = ax)
+        return j
 
     
 #    #def scatterplot(self):
