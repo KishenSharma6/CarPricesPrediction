@@ -5,14 +5,25 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 class EDA_Viz:
+    """
+    Class generates an object with attributes that allow you to generate one of the following visualizations:
+        - Heat Map
+        - Histrogram
+        - Boxplot
+        - Scatterplot
+    """
     def __init__(self, dataframe = None, color = None):
         self.color = color
         self.dataframe = dataframe
     
     def heat_map(self, ax=None):
-        """
-        Function takes a dataframe and returns a heatmap reflecting the correlations between 
-        each of the features of said dataframe
+        """Generates heatmap.
+
+        Args:
+            ax (optional): Plot visualization on an externally created plot. Defaults to None.
+
+        Returns:
+            Heatmap visualization
         """
         #Create correlation matrix
         corr = self.dataframe.corr()
@@ -32,19 +43,39 @@ class EDA_Viz:
         return j
     
     def histogram(self,feature = None, ax = None,bins=30):
+        """Generates histogram
+
+        Args:
+            feature (data, optional): [description]. Defaults to None.
+            ax ([type], optional): [description]. Defaults to None.
+            bins (int, optional): [description]. Defaults to 30.
+
+        Returns:
+            [type]: [description]
+        """
         j = sns.histplot(self.dataframe, x=feature,
                         color= self.color, bins = bins,
                         kde= True, ax=ax)
         return j
 
-    def boxplot(self, cat_var= None, cont_var=None, 
-                hue = None, order = None, ax = None):
+    def boxplot(self, cat_var= None, 
+                cont_var=None, hue = None, 
+                order = None, showfliers = True,
+                ax = None):
         j = sns.boxplot(x = cat_var, y = cont_var, 
                         hue = hue, order=order,
-                        data=self.dataframe, ax = ax)
+                        data=self.dataframe, showfliers=showfliers,
+                        ax = ax)
         return j
 
     
-#    #def scatterplot(self):
+    def scatterplot(self, x = None, y = None,
+                    hue=None, style = None,
+                    sizes = None, ax = None):
+        j = sns.scatterplot(x=x, y=y, 
+                            hue=hue, style = style,
+                            sizes = sizes, data = self.dataframe, 
+                            ax = ax)
+        return j
             
         
