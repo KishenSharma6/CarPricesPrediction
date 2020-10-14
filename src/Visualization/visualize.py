@@ -76,6 +76,21 @@ class EDA_Viz:
                             hue=hue, style = style,
                             sizes = sizes, data = self.dataframe, 
                             ax = ax)
-        return j
-            
-        
+        return j       
+
+def set_aesthetics(title = '', xlabel = '',ylabel = '', 
+                    fontdict =None , axis = None):
+    """Set plot aesthetics
+
+     Args:
+         title (str, optional): [description]. Defaults to ''.
+         xlabel (str, optional): [description]. Defaults to ''.
+         ylabel (str, optional): [description]. Defaults to ''.
+         fontdict ([type], optional): [description]. Defaults to None.
+         axis ([type], optional): [description]. Defaults to None.
+    """
+    axis.set_title(title, fontsize = fontdict['title_fontsize'])
+    axis.set_xlabel(xlabel, fontsize = fontdict['label_fontsize'])
+    axis.set_ylabel(ylabel, fontsize = fontdict['label_fontsize'])
+
+    return axis
