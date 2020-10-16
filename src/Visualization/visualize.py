@@ -12,15 +12,15 @@ class EDA_Viz:
         - Boxplot
         - Scatterplot
     """
-    def __init__(self, dataframe = None, color = None):
+    def __init__(self, dataframe, color = None):
         self.color = color
         self.dataframe = dataframe
     
     def heat_map(self, ax=None):
-        """Generates heatmap.
+        """Method generates heatmap.
 
         Args:
-            ax (optional): Plot visualization on an externally created plot. Defaults to None.
+            ax (matplotlib.axes, optional): Plot visualization on an externally created plot. Defaults to None.
 
         Returns:
             Heatmap visualization
@@ -42,26 +42,41 @@ class EDA_Viz:
                         data=corr, ax = ax)
         return j
     
-    def histogram(self,feature = None, ax = None,bins=30):
-        """Generates histogram
+    def histogram(self,feature, ax = None,bins=30):
+        """Method generates histogram
 
         Args:
-            feature (data, optional): [description]. Defaults to None.
-            ax ([type], optional): [description]. Defaults to None.
-            bins (int, optional): [description]. Defaults to 30.
+            feature (series): feature within your data you would like to build a histogram out of
+            ax (matplotlib.axes, optional): Axis you would like to place visualization on. Defaults to None.
+            bins (int, optional): Bins used for histogram. Defaults to 30.
 
         Returns:
-            [type]: [description]
+            j : histogram graphic
         """
         j = sns.histplot(self.dataframe, x=feature,
                         color= self.color, bins = bins,
                         kde= True, ax=ax)
         return j
 
-    def boxplot(self, cat_var= None, 
-                cont_var=None, hue = None, 
+    def boxplot(self,cont_var,
+                 cat_var= None, hue = None, 
                 order = None, showfliers = True,
                 ax = None):
+        """Method generates Boxplot
+
+        Args:
+            cont_var (panda series): continuos variable you would like to be modeled in a boxplot visualization
+            cat_var (panda series, optional): categorical variable you would like to group the cont_var into for the visualization. 
+            Defaults to None.
+            hue (pandas series, optional): color grouping you would like to see in the visualization. Defaults to None.
+            order (list, optional): Order you would like to see the categorical groupings to be placed in visualization. Defaults to None.
+            showfliers (bool, optional): Select whether or not to include outliers in your visualization. Defaults to True.
+            ax (matplotlib.axes, optional): Axis you would like to place visualization on. Defaults to None.
+
+        Returns:
+            matplotlib visualiztion: Boxplot graphic
+        """
+            
         j = sns.boxplot(x = cat_var, y = cont_var, 
                         hue = hue, order=order,
                         data=self.dataframe, showfliers=showfliers,
@@ -69,9 +84,23 @@ class EDA_Viz:
         return j
 
     
-    def scatterplot(self, x = None, y = None,
+    def scatterplot(self, x, y,
                     hue=None, style = None,
                     sizes = None, ax = None):
+        """Method generates scatterplot
+
+        Args:
+            y (pandas Series): continuous variable you would like to add to scatter plot on y-axis. Defaults to None.
+            x (pandas Series): continuous variable you would like to add to scatter plot on x-axis. Defaults to None.
+            hue (pandas Series, optional): Grouping variable that will produce points with different colors.. Defaults to None.
+            style (pandas Series, optional): Grouping variable that will produce points with different markers. Defaults to None.
+            sizes (pandas Series, optional): An object that determines how sizes are chosen when size is used. Defaults to None.
+            ax (matplotlib.axes, optional): Axis you would like to place visualization on. Defaults to None.
+
+        Returns:
+            matplotlib visualiztion: scatterplot graphic
+        """
+
         j = sns.scatterplot(x=x, y=y, 
                             hue=hue, style = style,
                             sizes = sizes, data = self.dataframe, 
@@ -83,11 +112,11 @@ def set_aesthetics(title = '', xlabel = '',ylabel = '',
     """Set plot aesthetics
 
      Args:
-         title (str, optional): [description]. Defaults to ''.
-         xlabel (str, optional): [description]. Defaults to ''.
-         ylabel (str, optional): [description]. Defaults to ''.
-         fontdict ([type], optional): [description]. Defaults to None.
-         axis ([type], optional): [description]. Defaults to None.
+        title (str, optional): String you would like to use for the title. Defaults to ''.
+        xlabel (str, optional): String you would like to use for the xlabel. Defaults to ''.
+        ylabel (str, optional): String you would like to use for the ylabel. Defaults to ''.
+        fontdict (dictionary, optional): Dictionary that contains fontsizes "title_fontsize" and "label_fontsize". Defaults to None.
+        ax (matplotlib.axes, optional): Axis you would like to place visualization on. Defaults to None.
     """
     axis.set_title(title, fontsize = fontdict['title_fontsize'])
     axis.set_xlabel(xlabel, fontsize = fontdict['label_fontsize'])
