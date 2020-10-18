@@ -14,7 +14,7 @@ class EDA_Viz:
     """
     def __init__(self, dataframe, color = None):
         self.color = color
-        self.dataframe = dataframe
+        self.dataframe = dataframe      
     
     def heat_map(self, ax=None):
         """Method generates heatmap.
