@@ -2,36 +2,27 @@
 import numpy as np
 import pandas as pd
 
-#Import all the sklearn goodies
-from sklearn.preprocessing import OneHotEncoder
-
 #Import the statsmodels goodies
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from statsmodels.tools.tools import add_constant
-
-class Preprocessor:
-    def __init__(self, dataframe):
-        self.data = dataframe
-
-#Encode categorical variables using column transformer
-
-    def nominal_encoder(self, nominal_features, drop= None,
-                        categories = 'auto'):
-        encoder= OneHotEncoder(drop = drop, handle_unknown='ignore',
-                                categories= categories)
-        x = encoder.fit_transform(self.data[nominal_features])
-        return x
-        
-
-class Tests:
     
 
+class Tests:
     def __init__(self, dataframe):
         self.data = dataframe
         
     def variance_inflation_score(self):
+        """Returns VIF scores for a Dataframe
+
+        Returns:
+            Pandas Series: Returns VIF scores for each feature withing a dataframe
+        """
         
-        X= data.add_constant()
+        X= add_constant(self.data)
+        X= X.select_dtypes(include = ['int64', 'float64'])
+        VIF= pd.Series([variance_inflation_factor(X.values, i) 
+                        for i in range(X.shape[1])],index= X.columns).sort_values(ascending = False)
+        return VIF
 #Encode categorical variables using column transformer
 
 #Scale/Normalize variables
