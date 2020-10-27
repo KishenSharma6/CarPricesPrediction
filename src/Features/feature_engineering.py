@@ -30,7 +30,7 @@ class Tests:
 
     def shapiro_wilks(self,target):
         shapiro_test = stats.shapiro(self.data[target])
-        print('Shapiro statistic: %s\nP-Value: %s' % (shapiro_test.statistic, shapiro_test.pvalue))
+        print('Shapiro statistic for %s: %s\nP-Value: %s\n' % (target, shapiro_test.statistic, shapiro_test.pvalue))
 
 
 class Transformations(Tests):
