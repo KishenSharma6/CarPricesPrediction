@@ -14,12 +14,10 @@ class Tests:
     def __init__(self, dataframe):
         self.data = dataframe
         
-    def variance_inflation_score(self):
-        """Returns VIF scores for a Dataframe
-
-        Returns:
-            Pandas Series: Returns VIF scores for each feature withing a dataframe
+        """Class consists of different statistical tests to better understand 
+        data for machine learning purposes
         """
+    def variance_inflation_score(self):
         
         X= add_constant(self.data)
         X= X.select_dtypes(include = ['int64', 'float64'])
@@ -32,10 +30,14 @@ class Tests:
 
     def shapiro_wilks(self,target):
         shapiro_test = stats.shapiro(self.data[target])
-        print('Shapiro statistic: %s \nP-Value: %s' % (shapiro_test.statistic, shapiro_test.pvalue))
+        print('Shapiro statistic: %s\nP-Value: %s' % (shapiro_test.statistic, shapiro_test.pvalue))
 
 
 class Transformations(Tests):
+
+    """Class consists of methods for different transformations intended to be 
+    applied to a target feature in a dataframe for machine learning.
+    """
     def __init__(self, data):
         super().__init__(data)
 
@@ -52,9 +54,3 @@ class Transformations(Tests):
         return stats.boxcox(self.data[target])
 
 
-#Encode categorical variables using column transformer
-
-#Scale/Normalize variables
-
-#Test for multicollinearity 
-#Test for normality
