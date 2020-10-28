@@ -107,11 +107,6 @@ class EDA_Viz:
                             ax = ax)
         return j    
 
-    def pairplot(self, ax):
-        j = sns.pairplot(self.dataframe, ax = ax)
-
-        return j
-
 def set_aesthetics(title = '', xlabel = '',ylabel = '', 
                     fontdict =None , axis = None):
     """Set plot aesthetics
