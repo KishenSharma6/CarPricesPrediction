@@ -1,5 +1,6 @@
-#Set path to raw data
+#Set path to data
 base:
   path:
-    data: "C:/Users/kishe/Documents/Data Science/Projects/Python/In Progress/Car_Price_Prediction/Data/Raw_Data/GeelyAutoCarPrices_Raw.csv"
+    raw_data: "C:/Users/kishe/Documents/Data Science/Projects/Python/In Progress/Car_Price_Prediction/Data/Raw_Data/GeelyAutoCarPrices_Raw.csv"
+    processed_data: "C:/Users/kishe/Documents/Data Science/Projects/Python/In Progress/Car_Price_Prediction/Data/Processed_Data/20201027_ProcessedData.csv"
   
