@@ -1,6 +1,9 @@
-#Set path to data
 base:
-  path:
+  path: #Set path to data
     raw_data: "C:/Users/kishe/Documents/Data Science/Projects/Python/In Progress/Car_Price_Prediction/Data/Raw_Data/GeelyAutoCarPrices_Raw.csv"
     processed_data: "C:/Users/kishe/Documents/Data Science/Projects/Python/In Progress/Car_Price_Prediction/Data/Processed_Data/20201027_ProcessedData.csv"
+  global: #Set global variables
+    lmbda: -0.6280809555716815
+
+
   
