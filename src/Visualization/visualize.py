@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import statsmodels.api as sm
 
 class EDA_Viz:
     """
@@ -107,8 +108,17 @@ class EDA_Viz:
                             ax = ax)
         return j    
 
+
+    def qqplot(self,feature, fit= True, line = '45',
+                ax=None):
+        import scipy.stats as stats
+        j= sm.qqplot(self.dataframe[feature],stats.t, fit= fit,
+                line=line, ax=ax)
+        return j
+
+
 def set_aesthetics(title = '', xlabel = '',ylabel = '', 
-                    fontdict =None , axis = None):
+                    fontdict =None , ax= None):
     """Set plot aesthetics
 
      Args:
@@ -118,8 +128,8 @@ def set_aesthetics(title = '', xlabel = '',ylabel = '',
         fontdict (dictionary, optional): Dictionary that contains fontsizes "title_fontsize" and "label_fontsize". Defaults to None.
         ax (matplotlib.axes, optional): Axis you would like to place visualization on. Defaults to None.
     """
-    axis.set_title(title, fontsize = fontdict['title_fontsize'])
-    axis.set_xlabel(xlabel, fontsize = fontdict['label_fontsize'])
-    axis.set_ylabel(ylabel, fontsize = fontdict['label_fontsize'])
+    ax.set_title(title, fontsize = fontdict['title_fontsize'])
+    ax.set_xlabel(xlabel, fontsize = fontdict['label_fontsize'])
+    ax.set_ylabel(ylabel, fontsize = fontdict['label_fontsize'])
 
     return axis

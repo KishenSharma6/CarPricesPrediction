@@ -53,4 +53,4 @@ class Transformations(Tests):
     def boxcox_transformation(self, target):
         return stats.boxcox(self.data[target])
 
-
+#Should i make inverse of these functions as well?
