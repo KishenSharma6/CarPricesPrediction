@@ -13,8 +13,7 @@ class EDA_Viz:
         - Boxplot
         - Scatterplot
     """
-    def __init__(self, dataframe, color = None):
-        self.color = color
+    def __init__(self, dataframe):
         self.dataframe = dataframe      
     
     def heat_map(self, ax=None):
@@ -55,7 +54,7 @@ class EDA_Viz:
             j : histogram graphic
         """
         j = sns.histplot(self.dataframe, x=feature,
-                        color= self.color, bins = bins,
+                        color= "red",alpha = .5, bins = bins,
                         kde= True, ax=ax)
         return j
 
@@ -116,6 +115,13 @@ class EDA_Viz:
                 line=line, ax=ax)
         return j
 
+    def pairplot(self, corner = True, plot_kws= None,
+                diag_kws= None,height=2.5, aspect=1):
+        
+        j= sns.pairplot(self.dataframe, corner=corner,plot_kws= plot_kws,
+                        diag_kws= diag_kws, height=height, aspect=aspect)
+        return j
+
 
 def set_aesthetics(title = '', xlabel = '',ylabel = '', 
                     fontdict =None , ax= None):
@@ -132,4 +138,4 @@ def set_aesthetics(title = '', xlabel = '',ylabel = '',
     ax.set_xlabel(xlabel, fontsize = fontdict['label_fontsize'])
     ax.set_ylabel(ylabel, fontsize = fontdict['label_fontsize'])
 
-    return axis
+    return ax
