@@ -124,7 +124,7 @@ class EDA_Viz:
 
 
 def set_aesthetics(title = '', xlabel = '',ylabel = '', 
-                    fontdict =None , ax= None):
+                    fontdict =None , axis= None):
     """Set plot aesthetics
 
      Args:
@@ -134,8 +134,8 @@ def set_aesthetics(title = '', xlabel = '',ylabel = '',
         fontdict (dictionary, optional): Dictionary that contains fontsizes "title_fontsize" and "label_fontsize". Defaults to None.
         ax (matplotlib.axes, optional): Axis you would like to place visualization on. Defaults to None.
     """
-    ax.set_title(title, fontsize = fontdict['title_fontsize'])
-    ax.set_xlabel(xlabel, fontsize = fontdict['label_fontsize'])
-    ax.set_ylabel(ylabel, fontsize = fontdict['label_fontsize'])
+    axis.set_title(title, fontsize = fontdict['title_fontsize'])
+    axis.set_xlabel(xlabel, fontsize = fontdict['label_fontsize'])
+    axis.set_ylabel(ylabel, fontsize = fontdict['label_fontsize'])
 
-    return ax
+    return axis
